@@ -1,24 +1,19 @@
-// const path = require("path");
-// const express = require("express");
-// const app = express();
-// const PORT = process.env.PORT || 3000;
-
-// app.use(express.static(path.join(__dirname, "/public")));
-// app.use("/api", (req, res) => {
-//   res.send("Hello, World!aaa");
-// });
-
-// app.listen(PORT, () => {
-//   console.log(`Server running on port ${PORT}`);
-// });
-
 const cors = require("cors");
 const path = require("path");
 
+//expressの設定
 const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+//knexの設定
+const knexConfig = require("./db/knexfile");
+const knex = require("knex")(knexConfig.development);
+
+const { createController } = require("./controller");
+const controller = createController(knex);
+
+app.use(express.json());
 app.use(express.static(path.join(__dirname, "/public")));
 app.use(
   cors({
@@ -29,6 +24,9 @@ app.use(
 app.use("/api", (req, res) => {
   res.send("つながったqq");
 });
+
+//全てのデータを取得
+app.get("/countries", controller.list);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

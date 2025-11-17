@@ -1,4 +1,6 @@
 import { Chart } from "react-google-charts";
+import { useContext } from "react";
+import { AppContext } from "./App";
 
 export const data = [
   ["Country", "Popularity"],
@@ -18,6 +20,11 @@ const options = {
 };
 
 function Map() {
+  const { visitData } = useContext(AppContext);
+
+  const mapData = visitData.map((data) => [data.country_name, 100]);
+  mapData.unshift(["Country", "Visit date"]);
+
   return (
     <>
       <Chart
@@ -28,7 +35,7 @@ function Map() {
               const chart = chartWrapper.getChart();
               const selection = chart.getSelection();
               if (selection.length === 0) return;
-              const region = data[selection[0].row + 1];
+              const region = mapData[selection[0].row + 1];
               console.log("Selected : " + region);
             },
           },
@@ -36,7 +43,7 @@ function Map() {
         chartType="GeoChart"
         width="900px"
         height="500px"
-        data={data}
+        data={mapData}
         options={options}
       />
     </>
