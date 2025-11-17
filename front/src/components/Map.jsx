@@ -22,7 +22,9 @@ const options = {
 function Map() {
   const { visitData } = useContext(AppContext);
 
-  const mapData = visitData.map((data) => [data.country_name, 100]);
+  const mapData = visitData
+    .filter((data) => data.is_visited === true)
+    .map((data) => [data.country_name, 100]);
   mapData.unshift(["Country", "Visit date"]);
 
   return (
