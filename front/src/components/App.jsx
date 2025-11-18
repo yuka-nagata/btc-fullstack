@@ -4,6 +4,7 @@ import Counter from "./Counter.jsx";
 import AddVisit from "./AddVisit.jsx";
 import Search from "./Search.jsx";
 import Detail from "./Detail.jsx";
+import AddDetail from "./AddDetail.jsx";
 import { useEffect, useState, createContext } from "react";
 
 export const AppContext = createContext();
@@ -70,13 +71,23 @@ function App() {
       </>
     );
   } else if (display === "detail") {
-    return (
-      <>
-        <AppContext.Provider value={value}>
-          <Detail />
-        </AppContext.Provider>
-      </>
-    );
+    if (selectedCountryData.is_visited === true) {
+      return (
+        <>
+          <AppContext.Provider value={value}>
+            <Detail />
+          </AppContext.Provider>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <AppContext.Provider value={value}>
+            <AddDetail />
+          </AppContext.Provider>
+        </>
+      );
+    }
   }
 }
 

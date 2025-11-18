@@ -12,6 +12,13 @@ function createController(knex) {
     res.status(200).json(data);
   };
 
-  return { list, find };
+  const edit = async (req, res) => {
+    const name = req.params.name;
+    await knex(table).where("country_name", name).update(req.body);
+    const data = await knex.first().from(table).where("country_name", name);
+    res.status(200).json();
+  };
+
+  return { list, find, edit };
 }
 module.exports = { createController };

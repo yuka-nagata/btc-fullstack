@@ -12,9 +12,6 @@ export default defineConfig({
       "/countries": {
         target: "http://localhost:3000",
       },
-      "/countries/:name": {
-        target: "http://localhost:3000",
-      },
     },
   },
 });

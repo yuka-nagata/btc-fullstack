@@ -28,6 +28,7 @@ app.use("/api", (req, res) => {
 //全てのデータを取得
 app.get("/countries", controller.list);
 app.get("/countries/:name", controller.find);
+app.patch("/countries/:name", controller.edit);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

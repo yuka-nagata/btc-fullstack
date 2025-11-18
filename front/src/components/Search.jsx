@@ -13,7 +13,9 @@ function Search() {
         value={selectedCountry}
         onChange={(e) => {
           setSelectedCountry(e.target.value);
+          console.log("setSelectedCountry :", e.target.value);
           setDisplay("detail");
+          console.log("detailの後", selectedCountry);
         }}
       >
         {allCountries.map((country, index) => (
