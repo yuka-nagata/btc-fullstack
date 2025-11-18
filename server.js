@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "/public")));
 app.use(
   cors({
-    origin: "http://localhost:5175/",
+    origin: "http://localhost:5173/",
   })
 );
 

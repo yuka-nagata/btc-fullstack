@@ -4,7 +4,8 @@ import { AppContext } from "./App";
 function Counter() {
   const { visitData } = useContext(AppContext);
 
-  const visitedData = visitData.filter((data) => data.is_visited === true);
+  const copyData = visitData;
+  const visitedData = copyData.filter((data) => data.is_visited === true);
   const percentage = Math.floor((visitedData.length / visitData.length) * 100);
 
   return (

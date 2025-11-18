@@ -3,7 +3,7 @@ import Map from "./Map.jsx";
 import Counter from "./Counter.jsx";
 import AddVisit from "./AddVisit.jsx";
 import Search from "./Search.jsx";
-import Detail from "./Search copy.jsx";
+import Detail from "./Detail.jsx";
 import { useEffect, useState, createContext } from "react";
 
 export const AppContext = createContext();
@@ -13,9 +13,15 @@ function App() {
   const [display, setDisplay] = useState("home");
   const [visitData, setVisitData] = useState([]);
 
+  const [selectedCountry, setSelectedCountry] = useState("Japan");
+  const [selectedCountryData, setSelectedCountryData] = useState();
+
   const value = {
     setDisplay,
     visitData,
+    setSelectedCountry,
+    selectedCountryData,
+    setSelectedCountryData,
   };
 
   //バックエンドのデータ取得
@@ -29,10 +35,17 @@ function App() {
     fetch("/countries")
       .then((res) => res.json())
       .then((data) => {
-        console.log(typeof data);
         setVisitData(data);
       });
   }, []);
+
+  useEffect(() => {
+    fetch("/countries/" + selectedCountry)
+      .then((res) => res.json())
+      .then((data) => {
+        setSelectedCountryData(data);
+      });
+  }, [selectedCountry]);
 
   //表示させる画面
   if (display === "home") {
@@ -49,9 +62,21 @@ function App() {
       </>
     );
   } else if (display === "search") {
-    return <Search />;
+    return (
+      <>
+        <AppContext.Provider value={value}>
+          <Search />
+        </AppContext.Provider>
+      </>
+    );
   } else if (display === "detail") {
-    return <Detail />;
+    return (
+      <>
+        <AppContext.Provider value={value}>
+          <Detail />
+        </AppContext.Provider>
+      </>
+    );
   }
 }
 

@@ -25,6 +25,10 @@ function createController(knex) {
   const find = async (req, res) => {
     const name = req.params.name;
     const data = await knex.first().from(table).where("country_name", name);
+    data["visit_date"] = new Date();
+    data["memo"] = "絶景だった！";
+    data["picture"] =
+      "https://cdn.pixabay.com/photo/2025/05/21/15/34/snow-mountain-9614087_1280.jpg";
     res.status(200).json(data);
   };
 
