@@ -7,9 +7,11 @@ exports.up = async (knex) => {
     table.increments("id").primary();
     table.string("country_name").notNullable().unique();
     table.boolean("is_visited");
-    table.integer("visit_date");
+    table.date("visit_date");
     table.string("memo");
-    table.string("picture");
+    table.string("picture1");
+    table.string("picture2");
+    table.string("picture3");
   });
 };
 

@@ -19,7 +19,9 @@ function Detail() {
       <h2>Visited</h2>
       <h3>{formattedDate}</h3>
       <p>{selectedCountryData.memo}</p>
-      <img className="pic" src={selectedCountryData.picture}></img>
+      <img className="pic" src={selectedCountryData.picture1}></img>
+      <img className="pic" src={selectedCountryData.picture2}></img>
+      <img className="pic" src={selectedCountryData.picture3}></img>
       <p>{JSON.stringify(selectedCountryData)}</p>
       <button onClick={() => setDisplay("home")}>Back</button>
     </>
