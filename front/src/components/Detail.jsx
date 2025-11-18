@@ -13,17 +13,40 @@ function Detail() {
     day: "numeric",
   });
 
+  const imgs = () => {
+    if (selectedCountryData.picture1 !== "") {
+      if (selectedCountryData.picture2 !== "") {
+        if (selectedCountryData.picture3 !== "") {
+          return (
+            <>
+              <img className="pic" src={selectedCountryData.picture1}></img>
+              <img className="pic" src={selectedCountryData.picture2}></img>
+              <img className="pic" src={selectedCountryData.picture3}></img>
+            </>
+          );
+        }
+        return (
+          <>
+            <img className="pic" src={selectedCountryData.picture1}></img>
+            <img className="pic" src={selectedCountryData.picture2}></img>
+          </>
+        );
+      }
+      return <img className="pic" src={selectedCountryData.picture1}></img>;
+    }
+    return "";
+  };
+
   return (
     <>
       <h1>{selectedCountryData.country_name}</h1>
       <h2>Visited</h2>
       <h3>{formattedDate}</h3>
       <p>{selectedCountryData.memo}</p>
-      <img className="pic" src={selectedCountryData.picture1}></img>
-      <img className="pic" src={selectedCountryData.picture2}></img>
-      <img className="pic" src={selectedCountryData.picture3}></img>
+      {imgs()}
       <p>{JSON.stringify(selectedCountryData)}</p>
-      <button onClick={() => setDisplay("home")}>Back</button>
+      <button onClick={() => setDisplay("edit")}>Edit</button>
+      <button onClick={() => setDisplay("search")}>Back</button>
     </>
   );
 }

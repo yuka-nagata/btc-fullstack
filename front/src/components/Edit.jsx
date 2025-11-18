@@ -2,7 +2,7 @@ import { TextField } from "@mui/material";
 import { useContext, useState } from "react";
 import { AppContext } from "./App";
 
-function AddDetail() {
+function Edit() {
   const { selectedCountry, selectedCountryData, setDisplay } =
     useContext(AppContext);
 
@@ -31,28 +31,41 @@ function AddDetail() {
       <form method="PATCH" onSubmit={handleSubmit}>
         <label>
           Visit Date :<br></br>
-          <input type="date" name="visit_date" />
+          <input
+            type="date"
+            name="visit_date"
+            defaultValue={selectedCountryData.visit_date.substring(0, 10)}
+          />
         </label>
         <p>
           <label>
             comment :<br></br>
-            <input type="text" name="memo" placeholder="comment" />
+            <input
+              type="text"
+              name="memo"
+              defaultValue={selectedCountryData.memo}
+            />
           </label>
         </p>
         <p>
           <label>
             Picture :<br></br>
-            <input type="text" name="picture1" placeholder="picture" />
+            <input
+              type="text"
+              name="picture1"
+              defaultValue={selectedCountryData.picture1}
+            />
           </label>
         </p>
         <p>
-          <button onClick={() => setDisplay("search")}>Back</button>
+          <button onClick={() => setDisplay("detail")}>Back</button>
           <button type="submit">Save</button>
         </p>
       </form>
+
       <></>
     </>
   );
 }
 
-export default AddDetail;
+export default Edit;

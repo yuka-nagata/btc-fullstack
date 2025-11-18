@@ -1,10 +1,11 @@
 import "./App.css";
 import Map from "./Map.jsx";
 import Counter from "./Counter.jsx";
-import AddVisit from "./AddVisit.jsx";
+import SearchCountry from "./ SearchCountry.jsx";
 import Search from "./Search.jsx";
 import Detail from "./Detail.jsx";
 import AddDetail from "./AddDetail.jsx";
+import Edit from "./Edit.jsx";
 import { useEffect, useState, createContext } from "react";
 
 export const AppContext = createContext();
@@ -38,7 +39,7 @@ function App() {
       .then((data) => {
         setVisitData(data);
       });
-  }, []);
+  }, [display]);
 
   useEffect(() => {
     fetch("/countries/" + selectedCountry)
@@ -46,7 +47,7 @@ function App() {
       .then((data) => {
         setSelectedCountryData(data);
       });
-  }, [selectedCountry]);
+  }, [selectedCountry, display]);
 
   //表示させる画面
   if (display === "home") {
@@ -54,11 +55,9 @@ function App() {
       <>
         <AppContext.Provider value={value}>
           <h1>Travel Map</h1>
-          <div className="App">Message from the backend: {message}</div>;
-          <div>VisitData : </div>;
           <Counter />
+          <SearchCountry />
           <Map />
-          <AddVisit />
         </AppContext.Provider>
       </>
     );
@@ -88,6 +87,14 @@ function App() {
         </>
       );
     }
+  } else if (display === "edit") {
+    return (
+      <>
+        <AppContext.Provider value={value}>
+          <Edit />
+        </AppContext.Provider>
+      </>
+    );
   }
 }
 

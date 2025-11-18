@@ -1,16 +1,16 @@
 import { useContext } from "react";
 import { AppContext } from "./App";
 
-function AddVisit() {
+function SearchCountry() {
   const { setDisplay } = useContext(AppContext);
 
   return (
     <>
       <button id="addVisit" onClick={() => setDisplay("search")}>
-        Add Visit
+        Search country
       </button>
     </>
   );
 }
 
-export default AddVisit;
+export default SearchCountry;

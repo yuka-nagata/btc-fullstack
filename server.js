@@ -22,7 +22,7 @@ app.use(
 );
 
 app.use("/api", (req, res) => {
-  res.send("つながったqq");
+  res.send("つながった");
 });
 
 //全てのデータを取得
