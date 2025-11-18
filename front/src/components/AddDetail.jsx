@@ -1,10 +1,9 @@
 import { TextField } from "@mui/material";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { AppContext } from "./App";
 
 function AddDetail() {
-  const { selectedCountry, selectedCountryData, setDisplay } =
-    useContext(AppContext);
+  const { selectedCountryData, setDisplay } = useContext(AppContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,7 +35,12 @@ function AddDetail() {
         <p>
           <label>
             comment :<br></br>
-            <input type="text" name="memo" placeholder="comment" />
+            <textarea
+              type="text"
+              name="memo"
+              defaultValue={selectedCountryData.memo}
+              id="inputComment"
+            />
           </label>
         </p>
         <p>

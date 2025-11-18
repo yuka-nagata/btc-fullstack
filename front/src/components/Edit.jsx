@@ -40,10 +40,11 @@ function Edit() {
         <p>
           <label>
             comment :<br></br>
-            <input
+            <textarea
               type="text"
               name="memo"
               defaultValue={selectedCountryData.memo}
+              id="inputComment"
             />
           </label>
         </p>

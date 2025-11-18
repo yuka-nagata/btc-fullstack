@@ -43,10 +43,13 @@ function Detail() {
       <h2>Visited</h2>
       <h3>{formattedDate}</h3>
       <p>{selectedCountryData.memo}</p>
-      {imgs()}
-      <p>{JSON.stringify(selectedCountryData)}</p>
-      <button onClick={() => setDisplay("edit")}>Edit</button>
-      <button onClick={() => setDisplay("search")}>Back</button>
+      <p>{imgs()}</p>
+      {/* <p>{JSON.stringify(selectedCountryData)}</p> */}
+      <p>
+        <button onClick={() => setDisplay("edit")}>Edit</button>
+        <button onClick={() => setDisplay("search")}>Search Country</button>
+        <button onClick={() => setDisplay("home")}>Home</button>
+      </p>
     </>
   );
 }

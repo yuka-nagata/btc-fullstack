@@ -46,6 +46,11 @@
   margin: 10px;
 }
 
+#inputComment {
+  width: 300px;
+  height: 100px;
+}
+
 button {
   margin: 10px;
 }

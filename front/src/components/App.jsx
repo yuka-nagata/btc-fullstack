@@ -70,23 +70,21 @@ function App() {
       </>
     );
   } else if (display === "detail") {
-    if (selectedCountryData.is_visited === true) {
-      return (
-        <>
-          <AppContext.Provider value={value}>
-            <Detail />
-          </AppContext.Provider>
-        </>
-      );
-    } else {
-      return (
-        <>
-          <AppContext.Provider value={value}>
-            <AddDetail />
-          </AppContext.Provider>
-        </>
-      );
-    }
+    return (
+      <>
+        <AppContext.Provider value={value}>
+          <Detail />
+        </AppContext.Provider>
+      </>
+    );
+  } else if (display === "addDetail") {
+    return (
+      <>
+        <AppContext.Provider value={value}>
+          <AddDetail />
+        </AppContext.Provider>
+      </>
+    );
   } else if (display === "edit") {
     return (
       <>
