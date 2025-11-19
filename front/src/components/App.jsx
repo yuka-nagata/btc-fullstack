@@ -31,7 +31,7 @@ function App() {
       .then((data) => {
         setVisitData(data);
       });
-  }, []);
+  }, [display]);
 
   //表示させる画面
   if (display === "home") {
