@@ -27,11 +27,11 @@ function App() {
   };
 
   //バックエンドのデータ取得
-  useEffect(() => {
-    fetch("/api")
-      .then((res) => res.text())
-      .then((data) => setMessage(data));
-  }, []);
+  // useEffect(() => {
+  //   fetch("/api")
+  //     .then((res) => res.text())
+  //     .then((data) => setMessage(data));
+  // }, []);
 
   useEffect(() => {
     fetch("/countries")

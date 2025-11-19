@@ -8,7 +8,14 @@ const PORT = process.env.PORT || 3000;
 
 //knexの設定
 const knexConfig = require("./db/knexfile");
-const knex = require("knex")(knexConfig.development);
+let knex;
+require("dotenv").config();
+if (process.env.NODE_ENV === "development") {
+  knex = require("knex")(knexConfig.development);
+}
+if (process.env.NODE_ENV === "production") {
+  knex = require("knex")(knexConfig.production);
+}
 
 const { createController } = require("./controller");
 const controller = createController(knex);
@@ -21,9 +28,9 @@ app.use(
   })
 );
 
-app.use("/api", (req, res) => {
-  res.send("つながった");
-});
+// app.use("/api", (req, res) => {
+//   res.send("つながった");
+// });
 
 //全てのデータを取得
 app.get("/countries", controller.list);
