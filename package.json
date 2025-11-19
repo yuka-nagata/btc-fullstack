@@ -9,7 +9,8 @@
     "build": "npm i && npx knex migrate:latest --knexfile db/knexfile.js && npx knex seed:run --knexfile db/knexfile.js && cd front && npm install && npm run build && rm -rf ../public && cp -r dist ../public",
     "migrate-latest": "npx knex migrate:latest --knexfile db/knexfile.js",
     "migrate-down": "npx knex migrate:down --knexfile db/knexfile.js",
-    "seed-data": "npx knex seed:run --knexfile db/knexfile.js"
+    "seed-data": "npx knex seed:run --knexfile db/knexfile.js",
+    "test": "mocha --require test/setup.js"
   },
   "keywords": [],
   "author": "",
@@ -22,6 +23,8 @@
     "pg": "^8.16.3"
   },
   "devDependencies": {
+    "chai": "^6.2.1",
+    "mocha": "^11.7.5",
     "nodemon": "^3.1.11"
   }
 }

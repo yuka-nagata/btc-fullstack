@@ -16,6 +16,7 @@ if (process.env.NODE_ENV === "development") {
 if (process.env.NODE_ENV === "production") {
   knex = require("knex")(knexConfig.production);
 }
+module.exports = knex;
 
 const { createController } = require("./controller");
 const controller = createController(knex);
