@@ -1,9 +1,10 @@
-import { TextField } from "@mui/material";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { AppContext } from "./App";
+import { IconContext } from "react-icons";
+import { IoCheckbox } from "react-icons/io5";
 
 function Edit() {
-  const { selectedCountry, selectedCountryData, setDisplay } =
+  const { setSelectedCountryData, selectedCountryData, setDisplay } =
     useContext(AppContext);
 
   const handleSubmit = async (e) => {
@@ -18,23 +19,51 @@ function Edit() {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formJson),
-    });
+    }).then(() =>
+      fetch("/countries/" + selectedCountryData.country_name)
+        .then((res) => res.json())
+        .then((data) => {
+          setSelectedCountryData(data);
+          setDisplay("detail");
+        })
+    );
+  };
 
-    setDisplay("detail");
+  const defalutVisit = selectedCountryData.is_visited ? (
+    <h2>
+      <IconContext.Provider value={{ color: "#67e25fff" }}>
+        <IoCheckbox />
+      </IconContext.Provider>
+      &thinsp;Visited
+    </h2>
+  ) : (
+    <h2>
+      <IconContext.Provider value={{ color: "#ccc" }}>
+        <IoCheckbox />
+      </IconContext.Provider>
+      &thinsp;No Visit
+    </h2>
+  );
+
+  const defaultDate = () => {
+    const dateString = selectedCountryData.visit_date.substring(0, 10);
+    const dateObject = new Date(dateString + "T00:00:00Z");
+    dateObject.setUTCDate(dateObject.getUTCDate() + 1);
+    return dateObject.toISOString().substring(0, 10);
   };
 
   return (
     <>
       <h1>{selectedCountryData.country_name}</h1>
-      <h2>No Visit</h2>
-      <TextField id="memo" />
+      {defalutVisit}
       <form method="PATCH" onSubmit={handleSubmit}>
         <label>
           Visit Date :<br></br>
           <input
             type="date"
             name="visit_date"
-            defaultValue={selectedCountryData.visit_date.substring(0, 10)}
+            defaultValue={defaultDate()}
+            required
           />
         </label>
         <p>

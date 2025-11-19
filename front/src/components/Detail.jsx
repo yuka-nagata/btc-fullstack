@@ -6,7 +6,7 @@ import { IoCheckbox } from "react-icons/io5";
 function Detail() {
   const { selectedCountryData, setDisplay } = useContext(AppContext);
 
-  const jsonDateString = selectedCountryData["visit_date"];
+  const jsonDateString = selectedCountryData.visit_date;
   const dateObject = new Date(jsonDateString);
   const formattedDate = dateObject.toLocaleDateString("ja-JP", {
     year: "numeric",
@@ -50,7 +50,6 @@ function Detail() {
       <h3>{formattedDate}</h3>
       <p>{selectedCountryData.memo}</p>
       <p>{imgs()}</p>
-      {/* <p>{JSON.stringify(selectedCountryData)}</p> */}
       <p>
         <button onClick={() => setDisplay("edit")}>Edit</button>
         <button onClick={() => setDisplay("search")}>Search Country</button>

@@ -14,14 +14,13 @@ export const AppContext = createContext();
 function App() {
   const [display, setDisplay] = useState("home");
   const [visitData, setVisitData] = useState([]);
-
-  const [selectedCountry, setSelectedCountry] = useState("Japan");
-  const [selectedCountryData, setSelectedCountryData] = useState();
+  const [selectedCountryData, setSelectedCountryData] = useState({
+    country_name: "Angola",
+  });
 
   const value = {
     setDisplay,
     visitData,
-    setSelectedCountry,
     selectedCountryData,
     setSelectedCountryData,
   };
@@ -32,15 +31,7 @@ function App() {
       .then((data) => {
         setVisitData(data);
       });
-  }, [display]);
-
-  useEffect(() => {
-    fetch("/countries/" + selectedCountry)
-      .then((res) => res.json())
-      .then((data) => {
-        setSelectedCountryData(data);
-      });
-  }, [selectedCountry, display]);
+  }, []);
 
   //表示させる画面
   if (display === "home") {

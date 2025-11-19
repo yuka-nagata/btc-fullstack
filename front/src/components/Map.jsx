@@ -14,7 +14,8 @@ const options = {
 };
 
 function Map() {
-  const { visitData, setSelectedCountry, setDisplay } = useContext(AppContext);
+  const { visitData, setDisplay, setSelectedCountryData } =
+    useContext(AppContext);
 
   const mapData = visitData
     .filter((data) => data.is_visited === true)
@@ -31,6 +32,19 @@ function Map() {
     ]);
   mapData.unshift(["Country", "years ago"]);
 
+  const selectCountry = (country) => {
+    fetch("/countries/" + country)
+      .then((res) => res.json())
+      .then((data) => {
+        setSelectedCountryData(data);
+        if (data.is_visited) {
+          setDisplay("detail");
+        } else {
+          setDisplay("addDetail");
+        }
+      });
+  };
+
   return (
     <>
       <Chart
@@ -43,8 +57,7 @@ function Map() {
 
               if (selection.length === 0) return;
               const region = mapData[selection[0].row + 1];
-              setSelectedCountry(region[0]);
-              setDisplay("detail");
+              selectCountry(region[0]);
             },
           },
         ]}
