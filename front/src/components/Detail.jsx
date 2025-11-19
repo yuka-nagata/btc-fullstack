@@ -1,9 +1,10 @@
 import { useContext } from "react";
 import { AppContext } from "./App";
+import { IconContext } from "react-icons";
+import { IoCheckbox } from "react-icons/io5";
 
 function Detail() {
-  const { selectedCountry, selectedCountryData, setDisplay } =
-    useContext(AppContext);
+  const { selectedCountryData, setDisplay } = useContext(AppContext);
 
   const jsonDateString = selectedCountryData["visit_date"];
   const dateObject = new Date(jsonDateString);
@@ -40,7 +41,12 @@ function Detail() {
   return (
     <>
       <h1>{selectedCountryData.country_name}</h1>
-      <h2>Visited</h2>
+      <h2>
+        <IconContext.Provider value={{ color: "#67e25fff" }}>
+          <IoCheckbox />
+        </IconContext.Provider>
+        &thinsp;Visited
+      </h2>
       <h3>{formattedDate}</h3>
       <p>{selectedCountryData.memo}</p>
       <p>{imgs()}</p>

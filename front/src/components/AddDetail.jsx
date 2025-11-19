@@ -1,6 +1,8 @@
 import { TextField } from "@mui/material";
 import { useContext } from "react";
 import { AppContext } from "./App";
+import { IconContext } from "react-icons";
+import { IoCheckbox } from "react-icons/io5";
 
 function AddDetail() {
   const { selectedCountryData, setDisplay } = useContext(AppContext);
@@ -11,6 +13,10 @@ function AddDetail() {
     const form = e.target;
     const formData = new FormData(form);
     const formJson = Object.fromEntries(formData.entries());
+    if (formJson.visit_date === "") {
+      return;
+    }
+
     formJson.is_visited = true;
 
     fetch("/countries/" + selectedCountryData.country_name, {
@@ -25,12 +31,17 @@ function AddDetail() {
   return (
     <>
       <h1>{selectedCountryData.country_name}</h1>
-      <h2>No Visit</h2>
+      <h2>
+        <IconContext.Provider value={{ color: "#ccc" }}>
+          <IoCheckbox />
+        </IconContext.Provider>
+        &thinsp;No Visit
+      </h2>
       <TextField id="memo" />
       <form method="PATCH" onSubmit={handleSubmit}>
         <label>
           Visit Date :<br></br>
-          <input type="date" name="visit_date" />
+          <input type="date" name="visit_date" required />
         </label>
         <p>
           <label>

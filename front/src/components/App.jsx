@@ -7,11 +7,11 @@ import Detail from "./Detail.jsx";
 import AddDetail from "./AddDetail.jsx";
 import Edit from "./Edit.jsx";
 import { useEffect, useState, createContext } from "react";
+import { IoEarth } from "react-icons/io5";
 
 export const AppContext = createContext();
 
 function App() {
-  const [message, setMessage] = useState();
   const [display, setDisplay] = useState("home");
   const [visitData, setVisitData] = useState([]);
 
@@ -25,13 +25,6 @@ function App() {
     selectedCountryData,
     setSelectedCountryData,
   };
-
-  //バックエンドのデータ取得
-  // useEffect(() => {
-  //   fetch("/api")
-  //     .then((res) => res.text())
-  //     .then((data) => setMessage(data));
-  // }, []);
 
   useEffect(() => {
     fetch("/countries")
@@ -54,7 +47,10 @@ function App() {
     return (
       <>
         <AppContext.Provider value={value}>
-          <h1>Travel Map</h1>
+          <h1>
+            <IoEarth />
+            &thinsp; Travel Map
+          </h1>
           <Counter />
           <SearchCountry />
           <Map />

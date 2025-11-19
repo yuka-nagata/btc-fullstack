@@ -28,10 +28,6 @@ app.use(
   })
 );
 
-// app.use("/api", (req, res) => {
-//   res.send("つながった");
-// });
-
 //全てのデータを取得
 app.get("/countries", controller.list);
 app.get("/countries/:name", controller.find);
