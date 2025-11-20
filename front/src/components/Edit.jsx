@@ -85,6 +85,20 @@ function Edit() {
               name="picture1"
               defaultValue={selectedCountryData.picture1}
             />
+            <p>
+              <input
+                type="text"
+                name="picture2"
+                defaultValue={selectedCountryData.picture2}
+              />
+            </p>
+            <p>
+              <input
+                type="text"
+                name="picture3"
+                defaultValue={selectedCountryData.picture3}
+              />
+            </p>
           </label>
         </p>
         <p>
