@@ -11,7 +11,10 @@
 
 ## 使用技術
 
+- javascript
 - react 19.2.0
+- node.js
+- express
 - postgreSQL
 
 ## 主な機能
