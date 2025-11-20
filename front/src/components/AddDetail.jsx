@@ -56,7 +56,13 @@ function AddDetail() {
         <p>
           <label>
             Picture :<br></br>
-            <input type="text" name="picture1" placeholder="picture" />
+            <input type="text" name="picture1" />
+            <p>
+              <input type="text" name="picture2" />
+            </p>
+            <p>
+              <input type="text" name="picture3" />
+            </p>
           </label>
         </p>
         <p>
